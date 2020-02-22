@@ -10,7 +10,12 @@
 #import <AFNetworking.h>
 #import "ImageDownloader.h"
 #import <FlickrKit.h>
+@interface DownloadManager()
+///圖片下載進程
+@property (nonatomic,strong) NSMutableDictionary *imageDownloadsInProgress;
+@end
 @implementation DownloadManager
+
 + (instancetype) sharedInstance
 {
     static DownloadManager *instance = nil;
@@ -22,6 +27,7 @@
     });
     return instance;
 }
+
 -(void)getFlickrDataWith:(NSDictionary *)parameter{
     
     __weak typeof (self) weakSelf = self;
@@ -46,7 +52,7 @@
                 weakSelf.DownloadDataArray = userDataArray;
 
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [[NSNotificationCenter defaultCenter]postNotificationName:@"DownloadManagerDataLoaded"
+                    [[NSNotificationCenter defaultCenter]postNotificationName:DownloadManagerDataLoaded
                                                                        object:weakSelf
                                                                      userInfo:[NSDictionary dictionaryWithObject:weakSelf.DownloadDataArray forKey:@"data"]];
                 });
@@ -55,7 +61,7 @@
     }];
 }
 #pragma mark - Download Image
-//如果沒有圖片就下載圖片
+
 -(void)startImageDownloadForIndexPath:(NSIndexPath *)indexPath completion:(void(^)(NSIndexPath *indexPath))finish{
 
     ImageDownloader *imageDownloader=[self.imageDownloadsInProgress objectForKey:indexPath];
@@ -79,8 +85,7 @@
     }
 }
 
-//檢查陣列有無圖片再啟動下載
--(void)loadImagesForOnScreenRows:(NSArray*)visiblePaths completion:(void(^)(NSIndexPath *indexPath))finish{
+-(void)loadImagesForOnScreenRows:(NSArray<NSIndexPath *>*)visiblePaths completion:(void(^)(NSIndexPath *indexPath))finish{
     if (self.DownloadDataArray.count>0) {
         for (NSIndexPath *indexPath in visiblePaths) {
             ImageData *oneRecord=[self.DownloadDataArray objectAtIndex:indexPath.row];
@@ -94,4 +99,5 @@
         }
     }
 }
+
 @end

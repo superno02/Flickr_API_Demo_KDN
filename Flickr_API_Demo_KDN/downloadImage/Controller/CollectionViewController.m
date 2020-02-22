@@ -23,7 +23,7 @@
     
     self.imageDataArray = [DownloadManager sharedInstance].DownloadDataArray;
     
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(updataUI:) name:@"DownloadManagerDataLoaded" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(updataUI:) name:DownloadManagerDataLoaded object:nil];
     
     [super viewDidLoad];
     
@@ -64,7 +64,7 @@
         CollectionViewCell *cell= [collectionView dequeueReusableCellWithReuseIdentifier:showDataCell forIndexPath:indexPath];
         return cell;
     }
-    //以下是 如果有資料 就執行以下的程式
+    //如果有資料 就執行以下的程式
     CollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:showDataCell forIndexPath:indexPath];
     
     ImageData *oneRecord = self.imageDataArray[indexPath.row];
