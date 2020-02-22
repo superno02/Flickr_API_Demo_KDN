@@ -29,7 +29,8 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    
+    UIViewController *destination = segue.destinationViewController;
+    destination.title = [[NSString alloc] initWithFormat:@"搜尋結果 %@",self.searchField.text];
 }
 - (IBAction)inputSearch:(UITextField *)sender {
     //添加文字參數檢查
