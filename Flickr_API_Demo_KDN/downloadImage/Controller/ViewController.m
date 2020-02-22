@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "CollectionViewController.h"
 #import "DownloadManager.h"
-@interface ViewController ()
+@interface ViewController ()<UITextFieldDelegate>
 @property (nonatomic, assign) BOOL apiCallComplete;
 @property (weak, nonatomic) IBOutlet UIButton *RequestAPIButton;
 @property (weak, nonatomic) IBOutlet UITextField *searchField;
@@ -19,8 +19,10 @@
 @implementation ViewController
 
 - (void)viewDidLoad {
-    self.title = @"搜尋輸入頁";
     [super viewDidLoad];
+    self.title = @"搜尋輸入頁";
+    self.searchField.delegate = self;
+    self.self.searchField.delegate =  self;
 }
 
 - (IBAction)clickButton:(UIButton *)sender {
@@ -39,8 +41,14 @@
 - (IBAction)inputQuantity:(UITextField *)sender {
     //添加數量參數檢查
 }
+
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     if([self.searchField.text isEqualToString:@""]||[self.quantityField.text isEqualToString:@""])return;
     self.RequestAPIButton.enabled = YES;
+}
+#pragma mark - UITextFieldDelegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return true;
 }
 @end
