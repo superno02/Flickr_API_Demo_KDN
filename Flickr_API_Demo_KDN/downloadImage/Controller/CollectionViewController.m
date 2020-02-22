@@ -46,8 +46,6 @@
         cellCount = [self.imageDataArray count];
     }
     
-    
-    
     return cellCount;
 }
 
@@ -69,15 +67,13 @@
     //以下是 如果有資料 就執行以下的程式
     CollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:showDataCell forIndexPath:indexPath];
     
-    ImageData *oneRecord=self.imageDataArray[indexPath.row];
+    ImageData *oneRecord = self.imageDataArray[indexPath.row];
 
-    cell.title.text=oneRecord.title;
+    cell.title.text = oneRecord.title;
     if (!oneRecord.image) {
-        if (collectionView.dragging==NO && self.collectionView.decelerating==NO)
-            //dragging是滑動中 decelerating 是 減速中的滑動
-        {
+        //dragging是滑動中 decelerating 是 減速中的滑動
+        if (collectionView.dragging==NO && self.collectionView.decelerating==NO){
             //下載圖片 這裡是為了 如果你一開始沒有亂動  也是要下載圖片的(不能等你觸發scrollViewDidEndDecelerating: 才下載圖片吧)
-            //[self startImageDownload:oneRecord forIndexPath:indexPath];
             __weak CollectionViewCell *weakCell = cell;
             [[DownloadManager sharedInstance]startImageDownloadForIndexPath:indexPath completion:^(NSIndexPath * _Nonnull indexPath) {
                 __strong CollectionViewCell *strongCell = weakCell;
@@ -85,7 +81,7 @@
                 strongCell.imageView.image = oneRecord.image;
             }];
         }
-        //cell.imageView.image=[UIImage imageNamed:@"Placeholder.png"];
+        //cell.imageView.image=[UIImage imageNamed:@"Placeholder.png"]; //預設圖片
     }else{
         cell.imageView.image=oneRecord.image;
     }
@@ -99,14 +95,12 @@
 
 
 #pragma mark - UIScrollViewDelegate
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-//這是一個減速移動停止後才會呼叫的方法 (保括.dragging .decelerating 都是停止 才會呼叫 只呼叫一次)
-{
+//減速移動停止後才會呼叫的方法 (保括.dragging .decelerating 都是停止 才會呼叫 只呼叫一次)
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
      [self callManagerDownloadImage];
 }
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-////這是一個手指滑動停止後才會呼叫的方法 (如果手指離開時 沒有滑動 就不會觸發減速移動事件) decelerate是指手指離開
-{
+//手指滑動停止後才會呼叫的方法 (如果手指離開時 沒有滑動 就不會觸發減速移動事件) decelerate是指手指離開
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
     if (!decelerate) {
         [self callManagerDownloadImage];
     }
@@ -123,8 +117,6 @@
         cell.imageView.image = oneRecord.image;
         
     }];
-        
-    
 }
 
 
