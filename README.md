@@ -1,2 +1,3 @@
-# downloadImage
-使用 多序下載的範例
+# Flickr_API_Demo_KDN
+ Demo 範例
+
