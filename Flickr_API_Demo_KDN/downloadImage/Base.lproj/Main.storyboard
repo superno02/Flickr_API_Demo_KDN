@@ -16,35 +16,52 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="搜尋名稱" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="15P-OW-hEl">
-                                <rect key="frame" x="160" y="247" width="97" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="inputSearch:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="qKT-lb-lgQ"/>
-                                </connections>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="顯示數量" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="U0f-ng-rG6">
-                                <rect key="frame" x="160" y="321" width="97" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="顯示數量" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="U0f-ng-rG6">
+                                <rect key="frame" x="20" y="162" width="374" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="IJp-U7-Sta"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                 <connections>
                                     <action selector="inputQuantity:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="4fs-jr-S8S"/>
                                 </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w7C-Ya-Syn">
-                                <rect key="frame" x="192" y="389" width="31" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w7C-Ya-Syn">
+                                <rect key="frame" x="20" y="216" width="374" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="d8U-VR-ano"/>
+                                </constraints>
                                 <state key="normal" title="搜尋"/>
                                 <connections>
                                     <action selector="clickButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2UG-eM-yMH"/>
                                     <segue destination="GTk-XB-1c2" kind="push" identifier="segue" id="YTw-lb-KBB"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="搜尋名稱" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="15P-OW-hEl">
+                                <rect key="frame" x="20" y="108" width="374" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="T3H-dt-Qvo"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="inputSearch:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="qKT-lb-lgQ"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="w7C-Ya-Syn" firstAttribute="top" secondItem="U0f-ng-rG6" secondAttribute="bottom" constant="20" id="5ZR-HF-91W"/>
+                            <constraint firstItem="15P-OW-hEl" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="JAe-na-XNH"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="U0f-ng-rG6" secondAttribute="trailing" constant="20" id="WGz-c3-zue"/>
+                            <constraint firstItem="w7C-Ya-Syn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="ZEJ-eF-X0I"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="w7C-Ya-Syn" secondAttribute="trailing" constant="20" id="nmT-E7-dRC"/>
+                            <constraint firstItem="U0f-ng-rG6" firstAttribute="top" secondItem="15P-OW-hEl" secondAttribute="bottom" constant="20" id="ovm-Gm-4gE"/>
+                            <constraint firstItem="15P-OW-hEl" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="vdD-Ik-NcW"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="15P-OW-hEl" secondAttribute="trailing" constant="20" id="wca-vo-dwl"/>
+                            <constraint firstItem="U0f-ng-rG6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="y4I-RM-Zj2"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="dpQ-Mj-ggY"/>
