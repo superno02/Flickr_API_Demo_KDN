@@ -43,6 +43,9 @@
 }
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    
+    [self.view endEditing:YES];
+    
     if([self.searchField.text isEqualToString:@""]||[self.quantityField.text isEqualToString:@""])return;
     self.RequestAPIButton.enabled = YES;
 }
