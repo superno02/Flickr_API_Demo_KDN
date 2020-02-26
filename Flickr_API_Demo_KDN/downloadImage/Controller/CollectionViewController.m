@@ -76,9 +76,12 @@
             //下載圖片 這裡是為了 如果你一開始沒有亂動  也是要下載圖片的(不能等你觸發scrollViewDidEndDecelerating: 才下載圖片吧)
             __weak CollectionViewCell *weakCell = cell;
             [[DownloadManager sharedInstance]startImageDownloadForIndexPath:indexPath completion:^(NSIndexPath * _Nonnull indexPath) {
+                
                 __strong CollectionViewCell *strongCell = weakCell;
                 if (!strongCell) return;
+                
                 strongCell.imageView.image = oneRecord.image;
+                
             }];
         }
         //cell.imageView.image=[UIImage imageNamed:@"Placeholder.png"]; //預設圖片
@@ -109,10 +112,13 @@
 -(void)callManagerDownloadImage{
     __weak typeof (self) weakSelf = self;
     [[DownloadManager sharedInstance] loadImagesForOnScreenRows:[self.collectionView indexPathsForVisibleItems] completion:^(NSIndexPath * _Nonnull indexPath) {
+        
         __strong typeof (self) strongSelf = weakSelf;
-        if(!strongSelf) return ;
+        if (!strongSelf) return;
 
         CollectionViewCell *cell=(CollectionViewCell*)[strongSelf.collectionView cellForItemAtIndexPath:indexPath];
+        if (!cell) return;
+        
         ImageData *oneRecord = weakSelf.imageDataArray[indexPath.row];
         cell.imageView.image = oneRecord.image;
         
